@@ -54,17 +54,49 @@ public class UserRestController {
 	 * return "redirect:/user/addUserView.jsp"; }
 	 *
 	 */
-	 
 	@RequestMapping(value = "json/addUser", method = RequestMethod.POST)
 	public User addUser(@RequestBody User user) throws Exception { 
 
 		System.out.println("/user/addUser : POST:");
 
 		userService.addUser(user);
+		
+		User user01 = new User();
+		user01 = userService.getUser(user.getUserId()); 
+		return user01;
+	}	
 
-		return userService.getUser(user.getUserId());
-	}
-
+	@RequestMapping(value = "json/updateUser/{userId}", method = RequestMethod.GET)
+	public User updateUser(@PathVariable String userId, User user) throws Exception { 
+		
+		System.out.println("/user/updateUser : GET:");		
+		System.out.println("UserName:"+userId);
+		System.out.println("User:"+user);
+		
+		user.setUserId(userId);			
+		userService.updateUser(user);
+		
+		User user01 = new User();
+		
+		user01 = userService.getUser(userId);
+		return user01;
+	}	
+	
+	@RequestMapping(value = "json/updateUser", method = RequestMethod.POST)
+	public User updateUser(@RequestBody User user) throws Exception { 
+		
+		System.out.println("/user/updateUser : GET:");		
+		System.out.println("UserName:"+user.getUserId());
+		System.out.println("User:"+user);
+		
+		userService.updateUser(user);
+		
+		User user01 = new User();
+		
+		user01 = userService.getUser(user.getUserId());
+		return user01;
+	}	
+	
 	@RequestMapping(value = "json/getUser/{userId}", method = RequestMethod.GET)
 	public User getUser(@PathVariable String userId) throws Exception {
 
@@ -80,6 +112,7 @@ public class UserRestController {
 		System.out.println("/user/json/login : POST");
 		// Business Logic
 		System.out.println("::" + user);
+		
 		User dbUser = userService.getUser(user.getUserId());
 
 		if (user.getPassword().equals(dbUser.getPassword())) {
@@ -90,7 +123,7 @@ public class UserRestController {
 	}
 
 	@RequestMapping(value = "json/listUser")
-	public Map<String, Object> listUser(@ModelAttribute Search search) throws Exception {
+	public Map<String, Object> listUser(Search search) throws Exception {
 
 		System.out.println("/json/listUser : GET / POST");
 

@@ -33,7 +33,7 @@ public class RestHttpClientApp {
 //		System.out.println("\n====================================\n");
 //		// 1.1 Http Get,Post 방식 Request : JsonSimple lib 사용
 //		RestHttpClientApp.addUserTest_JsonSimple();
-//		RestHttpClientApp.addUserTest_Codehaus();
+		RestHttpClientApp.addUserTest_Codehaus();
 		
 //		System.out.println("\n====================================\n");
 //		// 1.2 Http Get 방식 Request : CodeHaus lib 사용
@@ -42,7 +42,7 @@ public class RestHttpClientApp {
 //		System.out.println("\n====================================\n");
 //		// 1.2 Http Get,Post 방식 Request : CodeHaus lib 사용
 //		RestHttpClientApp.updateUser_Get_Codehaus();
-		RestHttpClientApp.updateUser_Post_Codehaus();
+//		RestHttpClientApp.updateUser_Post_Codehaus();
 		
 //		System.out.println("\n====================================\n");
 //		// 2.1 Http Post 방식 Request : JsonSimple lib 사용
@@ -139,9 +139,9 @@ public class RestHttpClientApp {
 			//[ 방법 3 : codehaus 사용]
 			
 			User user01 =  new User();
-			user01.setUserId("mmmmm");
-			user01.setPassword("123444");
-			user01.setUserName("hhjggee");
+			user01.setUserId("Lovebitcamp");
+			user01.setPassword("00000");
+			user01.setUserName("hyeonJi");
 			
 			ObjectMapper objectMapper01 = new ObjectMapper();
 			//Object ==> JSON Value 로 변환

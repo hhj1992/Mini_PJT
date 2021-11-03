@@ -8,11 +8,13 @@ import com.model2.mvc.service.product.dao.ProductDAO;
 import com.model2.mvc.service.product.vo.ProductVO;
 
 public class ProductServiceImpl implements ProductService{
+	
 	private ProductDAO productDao;
 	
 	public ProductServiceImpl() {
 		productDao = new ProductDAO();  
 	}
+	
 	public void addProduct(ProductVO productVO) throws Exception {
 		productDao.insertUser(productVO);
 	}

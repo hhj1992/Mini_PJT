@@ -5,7 +5,7 @@
 
 <%
 System.out.println("====================addPurchaseView ½ÃÀÛ");
-PurchaseVO purchase = (PurchaseVO)request.getAttribute("purchase");
+PurchaseVO purchase = (PurchaseVO)request.getAttribute("Purchase");
 %>
 
 <html>

@@ -1,4 +1,4 @@
-package com.model2.mvc.service.product.dao;
+package com.model2.mvc.service.purchase.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,26 +9,33 @@ import java.util.HashMap;
 import com.model2.mvc.common.SearchVO;
 import com.model2.mvc.common.util.DBUtil;
 import com.model2.mvc.service.product.vo.ProductVO;
+import com.model2.mvc.service.purchase.vo.PurchaseVO;
 import com.model2.mvc.service.user.vo.UserVO;
 
-public class ProductDAO {
-	public ProductDAO() {
+public class PurchaseDAO {
+	
+	public PurchaseDAO() {
 	}
 
-	public void insertUser(ProductVO productVO) throws Exception {
+	public void addPurchase(PurchaseVO purchaseVO) throws Exception {
 
 		Connection con = DBUtil.getConnection();
 
-		String sql = "insert into product values ((select max(prod_no)+1 from product),?,?,?,?,?,sysdate)";
+		String sql = "insert into transaction values (seq_transaction_tran_no.nextval,?,?,?,?,?,?,?,?,sysdate,?)";
 		PreparedStatement stmt = con.prepareStatement(sql);
 
-		stmt.setString(1, productVO.getProdName()); // 1번은 첫번째 물음표!
-		stmt.setString(2, productVO.getProdDetail());
-		stmt.setString(3, productVO.getManuDate());
-		stmt.setInt(4, productVO.getPrice());
-		stmt.setString(5, productVO.getFileName());
+		stmt.setInt(1, purchaseVO.getPurchaseProd().getProdNo()); // 1번은 첫번째 물음표!
+		stmt.setString(2, purchaseVO.getBuyer().getUserId());
+		stmt.setString(3, purchaseVO.getPaymentOption());
+		stmt.setString(4, purchaseVO.getReceiverName());
+		stmt.setString(5, purchaseVO.getReceiverPhone());
+		stmt.setString(6, purchaseVO.getDivyAddr());
+		stmt.setString(7, purchaseVO.getDivyRequest());
+		stmt.setString(8, purchaseVO.getTranCode());
+		stmt.setDate(9, purchaseVO.getOrderDate());
+		
+		
 		stmt.executeUpdate();
-
 		con.close();
 	}
 

@@ -6,14 +6,12 @@
 <%
 System.out.println("====================addPurchaseView ½ÃÀÛ");
 
-PurchaseVO purchase = (PurchaseVO)request.getAttribute("purchase");
 /* ProductVO product = (ProductVO)purchase.getPurchaseProd(); */
 /* UserVO user = (UserVO)purchase.getBuyer();
  */
 UserVO user = (UserVO)session.getAttribute("user");
 ProductVO product = (ProductVO)request.getAttribute("ProductVO");
 
-System.out.println("purchase = " + purchase);
 System.out.println("Product = " + product);
 System.out.println("User = " + user);
 %>
@@ -60,8 +58,7 @@ function fncAddPurchase() {
 	</tr>
 </table>
 
-<input type="hidden" name="prodNo" value="<%=product.getProdNo()%>" />
-
+	<input type="hidden" name="prodno" value="<%=product.getProdNo()%>" />
 <table width="600" border="0" cellspacing="0" cellpadding="0"	align="center" style="margin-top: 13px;">
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>

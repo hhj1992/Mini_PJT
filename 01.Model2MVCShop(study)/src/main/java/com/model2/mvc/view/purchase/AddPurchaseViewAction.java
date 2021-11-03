@@ -14,7 +14,9 @@ public class AddPurchaseViewAction extends Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
 		System.out.println("addpurview 진입");
+		
 		ProductVO productVO = new ProductVO();
 		
 		int prod = Integer.parseInt(request.getParameter("prod_no")); // request.getparameter의 반환type은 string이므로 interger로 변환시킨다. 
@@ -23,8 +25,10 @@ public class AddPurchaseViewAction extends Action {
 		
 		productVO = service.getProduct(prod);
 		
+		System.out.println(productVO);
+		
 		request.setAttribute("ProductVO",productVO);
 		
-		return "forword:/purchase/addPurchaseView.jsp";
+		return "forward:/purchase/addPurchaseView.jsp";
 	}
 }

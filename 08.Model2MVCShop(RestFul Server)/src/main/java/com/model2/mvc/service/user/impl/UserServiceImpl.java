@@ -56,9 +56,9 @@ public class UserServiceImpl implements UserService{
 	}
 
 	public boolean checkDuplication(String userId) throws Exception {
-		boolean result=true;
+		boolean result = true;
 		User user=userDao.getUser(userId);
-		if(user != null) {
+		if(user != null) { //user값이 있을 경우에 result값을 false으로 변경해서 return 
 			result=false;
 		}
 		return result;

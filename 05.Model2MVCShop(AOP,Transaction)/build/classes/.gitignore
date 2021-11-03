@@ -1,1 +1,5 @@
 /com/
+/config/
+/context-aspect.xml
+/log4j.properties
+/sql/

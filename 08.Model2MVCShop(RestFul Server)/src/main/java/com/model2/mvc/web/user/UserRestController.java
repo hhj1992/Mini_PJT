@@ -25,6 +25,9 @@ import com.model2.mvc.service.user.UserService;
 
 //==> 회원관리 RestController Spring에서 Controller 중 View로 응답하지 않는 Controller로 의미 
 //==> 반환타입이 있으면 그 반환타입을 json 변경 후 return.
+
+//객체형식 모양만 JSON / DaTa Tyoe운 String [ json { : } ] 반환되는 Data type String
+
 @RestController
 @RequestMapping("/user/*")
 public class UserRestController {
@@ -66,14 +69,27 @@ public class UserRestController {
 		return user01;
 	}	
 
-	@RequestMapping(value = "json/updateUser/{userId}", method = RequestMethod.GET)
+//	@RequestMapping(value = "json/updateUser/{userId}/{userName}/{phone}/{addr}/{email}", method = RequestMethod.GET)
+//	@RequestMapping(value = "json/updateUser/{userId}/{userName}/{phone}/{addr}/{email}", method = RequestMethod.GET)
 	public User updateUser(@PathVariable String userId, User user) throws Exception { 
+/*	public User updateUser(
+							@PathVariable("userId") String userId,
+							@PathVariable("userName") String userName,
+							@PathVariable("phone") String phone,
+							@PathVariable("addr")String addr,
+							@PathVariable("email") String email
+							) throws Exception { 
 		
-		System.out.println("/user/updateUser : GET:");		
-		System.out.println("UserName:"+userId);
+		System.out.println("/user/json/updateUser : GET:");		
+		System.out.println("userId:"+userId);
+		System.out.println("userName:"+userName);
+		System.out.println("phone:"+phone);
+		System.out.println("addr:"+addr);
+		System.out.println("email:"+email);*/
+		
 		System.out.println("User:"+user);
 		
-		user.setUserId(userId);			
+		//user.setUserId(userId);			
 		userService.updateUser(user);
 		
 		User user01 = new User();
@@ -150,5 +166,24 @@ public class UserRestController {
 		// Model에 넣고 Map에 넣고의 차이? model은 ui로 wep이 아닌 디바이스에는 사용이 불가?
 
 		return Ain;
+	}
+	
+	@RequestMapping( value="/json/checkDuplication", method=RequestMethod.POST )
+	public Map<String, Object> checkDuplication(@RequestBody User user ) throws Exception{
+		
+		System.out.println("/user//json/checkDuplication: POST");
+		
+		boolean result = userService.checkDuplication(user.getUserId());
+		
+		System.out.println("result:"+result);
+		// Model 과 View 연결
+		
+
+		Map<String, Object> Ain = new HashMap<String, Object>();
+		
+		Ain.put("result", new Boolean(result));
+		Ain.put("userId", user.getUserId());
+
+		return Ain; //"forward:/user/checkDuplication.jsp";
 	}
 }

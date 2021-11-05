@@ -15,7 +15,7 @@ public class AddPurchaseViewAction extends Action {
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		System.out.println("addpurview 진입");
+		System.out.println("AddPurchaseViewAction 진입");
 		
 		ProductVO productVO = new ProductVO();
 		

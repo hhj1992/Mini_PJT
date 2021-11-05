@@ -39,64 +39,24 @@ public class PurchaseDAO {
 		con.close();
 	}
 
-	public HashMap<String, Object> getProductList(SearchVO searchVO) throws Exception {
-//		HashMap<String, Object> hashMap = new HashMap<String, Object>();
-//
-//		Connection con = DBUtil.getConnection();
-//
-//		String sql = "select * from product order by reg_date desc";
-//		PreparedStatement stmt = con.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE,
-//				ResultSet.CONCUR_UPDATABLE);
-//
-//		ResultSet rs = stmt.executeQuery();
-//		// rs에서 1번부터 10번까지의 데이터가 나왔어
-//		ArrayList<ProductVO> productList = new ArrayList<ProductVO>();
-//
-//		rs.last(); // 1번~10번까지 -> 커서를 10번 줄로감
-//		int total = rs.getRow(); // ->10
-//
-//		// 2페이지를 눌렀을때, ListProductAction에서 setpage한 결과
-//		rs.absolute(searchVO.getPage() * searchVO.getPageUnit() - searchVO.getPageUnit() + 1);
-//		System.out.println("searchVO.getPage():" + searchVO.getPage());
-//		System.out.println("searchVO.getPageUnit():" + searchVO.getPageUnit());
-//
-//		if (total > 0) {
-//			for (int i = 0; i < searchVO.getPageUnit(); i++) {
-//				ProductVO productVO = new ProductVO();
-//				productVO.setProdNo(rs.getInt("PROD_NO"));
-//				productVO.setProdName(rs.getString("PROD_NAME"));
-//				productVO.setProdDetail(rs.getString("PROD_DETAIL"));
-//				productVO.setManuDate(rs.getString("MANUFACTURE_DAY"));
-//				productVO.setPrice(rs.getInt("PRICE"));
-//				productVO.setFileName(rs.getString("IMAGE_FILE"));
-//				productVO.setRegDate(rs.getDate("REG_DATE"));
-//				productList.add(productVO);
-//			}
-//		}
-//		
-//		
-//
-//		hashMap.put("count", total);
-//		con.close();
-//		hashMap.put("productList", productList);
-//		return hashMap;
-//	}
+	public HashMap<String, Object> getPurchasetList(SearchVO searchVO) throws Exception {
+		
 		Connection con = DBUtil.getConnection();
 		
-		String sql = "SELECT * FROM PRODUCT ";
-		if (searchVO.getSearchCondition() != null) {
-			if (searchVO.getSearchCondition().equals("0")) {
-				sql += " where prod_no Like'%" + searchVO.getSearchKeyword()
-						+ "%'";
-			} else if (searchVO.getSearchCondition().equals("1")) {
-				sql += " where prod_name Like'%" + searchVO.getSearchKeyword()
-						+ "%'";
-			}else if (searchVO.getSearchCondition().equals("2")) {
-				sql += " where price Like '%" + searchVO.getSearchKeyword()
-				+ "%'";
-			}
-		}
-		sql += " order by PROD_NO";
+		String sql = "SELECT tran_no, BUYER_ID, RECEIVER_NAME, RECEIVER_PHONE, tran_status_code from transaction";
+//		if (searchVO.getSearchCondition() != null) {
+//			if (searchVO.getSearchCondition().equals("0")) {
+//				sql += " where prod_no Like'%" + searchVO.getSearchKeyword()
+//						+ "%'";
+//			} else if (searchVO.getSearchCondition().equals("1")) {
+//				sql += " where prod_name Like'%" + searchVO.getSearchKeyword()
+//						+ "%'";
+//			}else if (searchVO.getSearchCondition().equals("2")) {
+//				sql += " where price Like '%" + searchVO.getSearchKeyword()
+//				+ "%'";
+//			}
+//		}
+//		sql += " order by PROD_NO";
 
 		PreparedStatement stmt = 
 			con.prepareStatement(	sql,
@@ -107,39 +67,45 @@ public class PurchaseDAO {
 		rs.last(); //결과값의 맨마지막으로 커서이동해
 		int total = rs.getRow(); //그럴때의 몇번째 로우수인지 -> 맨마지막값의 로우수를 가져옴
 		//
+		
 		System.out.println("로우줄수^^ :" + total);
 
-		HashMap<String,Object> map = new HashMap<String,Object>();
-		map.put("count", new Integer(total));
-                      
-		rs.absolute(searchVO.getPage() * searchVO.getPageUnit() - searchVO.getPageUnit()+1);
-		System.out.println("searchVO.getPage():" + searchVO.getPage());
-		System.out.println("searchVO.getPageUnit():" + searchVO.getPageUnit());
 
-		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
+//		HashMap<String,Object> map = new HashMap<String,Object>();
+//		map.put("count", new Integer(total));
+//                      
+//		rs.absolute(searchVO.getPage() * searchVO.getPageUnit() - searchVO.getPageUnit()+1);
+//		System.out.println("searchVO.getPage():" + searchVO.getPage());
+//		System.out.println("searchVO.getPageUnit():" + searchVO.getPageUnit());
+//
+//		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
 		if (total > 0) {
 			for (int i = 0; i < 3; i++) {
-				ProductVO vo = new ProductVO();
-				vo.setProdName(rs.getString("PROD_NAME"));
-				vo.setProdNo(rs.getInt("PROD_NO"));
-				vo.setPrice(rs.getInt("PRICE"));
-				vo.setRegDate(rs.getDate("REG_DATE"));
-				vo.setProTranCode("판매중");
-
-				// 커서가 알아서 밑으로 내려오냐? 모름. 
+//				ProductVO vo = new ProductVO();
+//				vo.setProdName(rs.getString("PROD_NAME"));
+//				vo.setProdNo(rs.getInt("PROD_NO"));
+//				vo.setPrice(rs.getInt("PRICE"));
+//				vo.setRegDate(rs.getDate("REG_DATE"));
+//				vo.setProTranCode("판매중");
+//
+//				// 커서가 알아서 밑으로 내려오냐? 모름. 
+//				
+//				list.add(vo); //list[0],[1],[2]
 				
-				list.add(vo); //list[0],[1],[2] 
+				System.out.println(rs.getString("BUYER_ID"));
 				if (!rs.next())
 					break;
+				
 			}
 		}
-		System.out.println("list.size() : "+ list.size());
-		map.put("list", list);
-		System.out.println("map().size() : "+ map.size());
-
-		con.close();
+//		System.out.println("list.size() : "+ list.size());
+//		map.put("list", list);
+//		System.out.println("map().size() : "+ map.size());
+//
+//		con.close();
 			
-		return map;
+//		return map;
+		return null;
 	}	
 		
 

@@ -42,16 +42,11 @@ public class RequestMapping {
 			System.out.println("prop : " + properties);
 			System.out.println("path : " + path);			
 			System.out.println("className : " + className);
-			System.out.println("0");
 			className = className.trim();
-			System.out.println("0-1");
 			try{
 				Class c = Class.forName(className);
-				System.out.println("1");
 				Object obj = c.newInstance();
-				System.out.println("2");
 				if(obj instanceof Action){
-					System.out.println("3");
 					map.put(path, (Action)obj);
 					action = (Action)obj;
 				}else{

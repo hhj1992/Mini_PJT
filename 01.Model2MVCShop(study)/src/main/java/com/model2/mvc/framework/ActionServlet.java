@@ -20,6 +20,7 @@ public class ActionServlet extends HttpServlet {
 		String resources=getServletConfig().getInitParameter("resources");
 		mapper=RequestMapping.getInstance(resources);
 	}
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) 
 																									throws ServletException, IOException {

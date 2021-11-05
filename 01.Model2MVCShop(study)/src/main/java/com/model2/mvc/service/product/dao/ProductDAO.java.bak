@@ -22,7 +22,7 @@ public class ProductDAO {
 		String sql = "insert into product values ((select max(prod_no)+1 from product),?,?,?,?,?,sysdate)";
 		PreparedStatement stmt = con.prepareStatement(sql);
 
-		stmt.setString(1, productVO.getProdName()); // 1¹øÀº Ã¹¹øÂ° ¹°À½Ç¥!
+		stmt.setString(1, productVO.getProdName()); // 1ë²ˆì€ ì²«ë²ˆì§¸ ë¬¼ìŒí‘œ!
 		stmt.setString(2, productVO.getProdDetail());
 		stmt.setString(3, productVO.getManuDate());
 		stmt.setInt(4, productVO.getPrice());
@@ -42,13 +42,13 @@ public class ProductDAO {
 //				ResultSet.CONCUR_UPDATABLE);
 //
 //		ResultSet rs = stmt.executeQuery();
-//		// rs¿¡¼­ 1¹øºÎÅÍ 10¹ø±îÁöÀÇ µ¥ÀÌÅÍ°¡ ³ª¿Ô¾î
+//		// rsì—ì„œ 1ë²ˆë¶€í„° 10ë²ˆê¹Œì§€ì˜ ë°ì´í„°ê°€ ë‚˜ì™”ì–´
 //		ArrayList<ProductVO> productList = new ArrayList<ProductVO>();
 //
-//		rs.last(); // 1¹ø~10¹ø±îÁö -> Ä¿¼­¸¦ 10¹ø ÁÙ·Î°¨
+//		rs.last(); // 1ë²ˆ~10ë²ˆê¹Œì§€ -> ì»¤ì„œë¥¼ 10ë²ˆ ì¤„ë¡œê°
 //		int total = rs.getRow(); // ->10
 //
-//		// 2ÆäÀÌÁö¸¦ ´­·¶À»¶§, ListProductAction¿¡¼­ setpageÇÑ °á°ú
+//		// 2í˜ì´ì§€ë¥¼ ëˆŒë €ì„ë•Œ, ListProductActionì—ì„œ setpageí•œ ê²°ê³¼
 //		rs.absolute(searchVO.getPage() * searchVO.getPageUnit() - searchVO.getPageUnit() + 1);
 //		System.out.println("searchVO.getPage():" + searchVO.getPage());
 //		System.out.println("searchVO.getPageUnit():" + searchVO.getPageUnit());
@@ -79,14 +79,14 @@ public class ProductDAO {
 		String sql = "SELECT * FROM PRODUCT ";
 		if (searchVO.getSearchCondition() != null) {
 			if (searchVO.getSearchCondition().equals("0")) {
-				sql += " where prod_no Like'%" + searchVO.getSearchKeyword()
-						+ "%'";
+				sql += " where prod_no='" + searchVO.getSearchKeyword()
+						+ "'";
 			} else if (searchVO.getSearchCondition().equals("1")) {
-				sql += " where prod_name Like'%" + searchVO.getSearchKeyword()
-						+ "%'";
+				sql += " where prod_name='" + searchVO.getSearchKeyword()
+						+ "'";
 			}else if (searchVO.getSearchCondition().equals("2")) {
-				sql += " where price Like '%" + searchVO.getSearchKeyword()
-				+ "%'";
+				sql += " where price='" + searchVO.getSearchKeyword()
+				+ "'";
 			}
 		}
 		sql += " order by PROD_NO";
@@ -97,31 +97,29 @@ public class ProductDAO {
 														ResultSet.CONCUR_UPDATABLE);
 		ResultSet rs = stmt.executeQuery();
 
-		rs.last(); //°á°ú°ªÀÇ ¸Ç¸¶Áö¸·À¸·Î Ä¿¼­ÀÌµ¿ÇØ
-		int total = rs.getRow(); //±×·²¶§ÀÇ ¸î¹øÂ° ·Î¿ì¼öÀÎÁö -> ¸Ç¸¶Áö¸·°ªÀÇ ·Î¿ì¼ö¸¦ °¡Á®¿È
+		rs.last(); //ê²°ê³¼ê°’ì˜ ë§¨ë§ˆì§€ë§‰ìœ¼ë¡œ ì»¤ì„œì´ë™í•´
+		int total = rs.getRow(); //ê·¸ëŸ´ë•Œì˜ ëª‡ë²ˆì§¸ ë¡œìš°ìˆ˜ì¸ì§€ -> ë§¨ë§ˆì§€ë§‰ê°’ì˜ ë¡œìš°ìˆ˜ë¥¼ ê°€ì ¸ì˜´
 		//
-		System.out.println("·Î¿ìÁÙ¼ö^^ :" + total);
+		System.out.println("ë¡œìš°ì¤„ìˆ˜^^ :" + total);
 
 		HashMap<String,Object> map = new HashMap<String,Object>();
 		map.put("count", new Integer(total));
-                      
+                              //2í˜ì´ì§€ -> 6 - 4 => 2 , 3í˜ì´ì§€ì¼ë•Œ 9- 4 => 5, 4í˜ì´ì§€ì¼ë•ŒëŠ” 12 - 4 => 8
 		rs.absolute(searchVO.getPage() * searchVO.getPageUnit() - searchVO.getPageUnit()+1);
 		System.out.println("searchVO.getPage():" + searchVO.getPage());
 		System.out.println("searchVO.getPageUnit():" + searchVO.getPageUnit());
 
 		ArrayList<ProductVO> list = new ArrayList<ProductVO>();
 		if (total > 0) {
-			for (int i = 0; i < 3; i++) {
+			for (int i = 0; i < searchVO.getPageUnit(); i++) {
 				ProductVO vo = new ProductVO();
 				vo.setProdName(rs.getString("PROD_NAME"));
 				vo.setProdNo(rs.getInt("PROD_NO"));
 				vo.setPrice(rs.getInt("PRICE"));
 				vo.setRegDate(rs.getDate("REG_DATE"));
-				vo.setProTranCode("ÆÇ¸ÅÁß");
+				vo.setProTranCode("íŒë§¤ì¤‘");
 
-				// Ä¿¼­°¡ ¾Ë¾Æ¼­ ¹ØÀ¸·Î ³»·Á¿À³Ä? ¸ğ¸§. 
-				
-				list.add(vo); //list[0],[1],[2] 
+				list.add(vo); //list[2] 3ê°œê°€ ë“¤ì–´ê°€. 
 				if (!rs.next())
 					break;
 			}

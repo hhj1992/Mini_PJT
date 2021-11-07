@@ -7,28 +7,36 @@
 <%@ page import="com.model2.mvc.common.*" %>
 
 <%
+System.out.println("jsp 실행");
 HashMap<String,Object> map=(HashMap<String,Object>)request.getAttribute("map");
 SearchVO searchVO=(SearchVO)request.getAttribute("searchVO");
 
-String urlMenu = request.getParameter("menu");
+/* String urlMenu = request.getParameter("menu"); */
+
+System.out.println(map);
+System.out.println(searchVO);
+/* System.out.println(urlMenu); */
 
 int total=0;
-ArrayList<PurchaseVO> list=null;
+ArrayList <PurchaseVO> list= null;
 
 if(map != null){
-	total=((Integer)map.get("count")).intValue();
-	list=(ArrayList<PurchaseVO>)map.get("list");
+	total = ((Integer)map.get("count")).intValue();
+	list = (ArrayList<PurchaseVO>)map.get("list");
 }
 
-int currentPage=searchVO.getPage();
+int currentPage = searchVO.getPage();
 
 int totalPage=0;
+
 if(total > 0) {
 	totalPage= total / searchVO.getPageUnit() ;
+	
 	if(total%searchVO.getPageUnit() >0)
+		
 		totalPage += 1;
 }
-
+System.out.println(list);
 %>
 
 
@@ -89,7 +97,7 @@ if(total > 0) {
     
         <% 	
         if(list != null){
-			int no=list.size();
+			int no = list.size();
 			for(int i=0; i<list.size(); i++) {
 				PurchaseVO vo = (PurchaseVO)list.get(i);
 				UserVO userVo = vo.getBuyer();
@@ -98,8 +106,8 @@ if(total > 0) {
         
         <tr class="ct_list_pop">
             <td align="center">
-            	<% if(vo.getTranCode().equals("1")){ %>
-						<a href="/getPurchase.do?tranNo=<%=vo.getTranNo()%>"><%=no--%></a>
+            	<%if(vo.getTranCode().equals("1")){ %>
+						<a href="/getPurchase.do?tranNo=<%=vo.getTranNo()%>"><%=no--%></a> 
 					<% }else{%>
 					<%=no--%>
 				<%}%>
@@ -119,23 +127,23 @@ if(total > 0) {
             <%}else if(vo.getTranCode().equals("2")){%>
             	배송중 입니다. <a href ="#"></a>
             <%}else{%>
-            	구매 완료된 상태
+            	배송완료
             <%} %>
             </td>
             <td></td>
-            <td align="left">
-            <%if(vo.getTranCode().equals("2")){%>
-            	<a href ="updateTranCode.do?prodNo=<%=vo.getPurchaseProd().getProdNo()%>"  onclick='return confirm("물픔을 수령 하셨습니까 ?");'>물건도착</a>
+            <td align="left"> 
+            <%if(vo.getTranCode().equals("2")){%>           
+            	<a href ="updateTranCode.do?tran_no=<%=vo.getTranNo()%>" onclick='return confirm("물픔을 수령 하셨습니까 ?");'>물건도착</a>
             <%}%>
-            </td>
+            </td> 
         </tr>
         <tr>
             <td colspan="11" bgcolor="D6D7D6" height="1"></td>
         </tr>
         <% }
-		} %>
-        
+		} %> 
     </table>
+    
     
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 10px;">
         <tr>

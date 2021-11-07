@@ -6,7 +6,7 @@
 <%
 System.out.println("====================addPurchaseView 시작");
 
-PurchaseVO purchase = (PurchaseVO)request.getAttribute("pruchase");
+PurchaseVO purchase = (PurchaseVO)request.getAttribute("PurchaseVO");
 
 System.out.println("============="+purchase);
 UserVO user = (UserVO)purchase.getBuyer();
@@ -42,7 +42,7 @@ System.out.println("User = " + user);
 			<img src="/images/ct_ttl_img01.gif"  width="15" height="37"/>
 		</td>
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left: 10px;">
-			<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<table width="100%" border="0" cellspacing="0" cellpadding="0">no
 				<tr>
 					<td width="93%" class="ct_ttl01">구매정보수정</td>
 					<td width="20%" align="right">&nbsp;</td>
@@ -170,7 +170,7 @@ System.out.println("User = " + user);
 			</tr>
 		</table>
 		</td>
-	</tr>
+	</tr> 
 </table>
 </form>
 

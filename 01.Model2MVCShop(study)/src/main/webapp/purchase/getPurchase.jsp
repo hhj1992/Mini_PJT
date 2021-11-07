@@ -4,9 +4,17 @@
 <%@ page import="com.model2.mvc.service.user.vo.*" %>
 
 <%
-PurchaseVO purchaseVo = (PurchaseVO)request.getAttribute("vo");
+PurchaseVO purchaseVo = (PurchaseVO)request.getAttribute("PurchaseVO");
+
+System.out.println(purchaseVo);
+
 UserVO userVo = purchaseVo.getBuyer();
+
+System.out.println(userVo);
+
 ProductVO productVo = purchaseVo.getPurchaseProd();
+
+System.out.println(productVo);
 
 %>
 <html>

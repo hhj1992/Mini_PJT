@@ -76,7 +76,7 @@ public class ProductDAO {
 //	}
 		Connection con = DBUtil.getConnection();
 		
-		String sql = "SELECT * FROM PRODUCT ";
+		String sql = "Select p.*,NVL((Select tran_status_code from transaction t Where p.prod_no = t.prod_no),0) trans_code,(Select tran_no from transaction t Where p.prod_no = t.prod_no) tran_no from product p";
 		if (searchVO.getSearchCondition() != null) {
 			if (searchVO.getSearchCondition().equals("0")) {
 				sql += " where prod_no Like'%" + searchVO.getSearchKeyword()
@@ -89,7 +89,7 @@ public class ProductDAO {
 				+ "%'";
 			}
 		}
-		sql += " order by PROD_NO";
+		sql += " order by PROD_NO"; 
 
 		PreparedStatement stmt = 
 			con.prepareStatement(	sql,
@@ -117,15 +117,15 @@ public class ProductDAO {
 				vo.setProdNo(rs.getInt("PROD_NO"));
 				vo.setPrice(rs.getInt("PRICE"));
 				vo.setRegDate(rs.getDate("REG_DATE"));
-				vo.setProTranCode("판매중");
+				vo.setProTranCode(rs.getString("trans_code").trim());
+				vo.setTransNo(rs.getString("tran_no"));
 
-				// 커서가 알아서 밑으로 내려오냐? 모름. 
-				
 				list.add(vo); //list[0],[1],[2] 
 				if (!rs.next())
 					break;
 			}
 		}
+		
 		System.out.println("list.size() : "+ list.size());
 		map.put("list", list);
 		System.out.println("map().size() : "+ map.size());

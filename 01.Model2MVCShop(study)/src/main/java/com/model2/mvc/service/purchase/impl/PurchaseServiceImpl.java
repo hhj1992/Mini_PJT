@@ -24,17 +24,18 @@ public class PurchaseServiceImpl implements PurchaseService{
 
 	
 	public PurchaseVO getPurchase(int tranNo) throws Exception {
-		return null;
+		return purchaseDao.getPurchase(tranNo);
 	}
 
 	
-	public PurchaseVO getPurchase2(int ProdNo) throws Exception {
+	public PurchaseVO getPurchase2(int prodNo) throws Exception {
 		return null;
 	}
 
 	
 	public HashMap<String, Object> getPurchaseList(SearchVO searchVO, String buyerId) throws Exception {
-		return null;
+				
+		return purchaseDao.getPurchaseList(searchVO,buyerId);
 	}
 
 	
@@ -44,12 +45,13 @@ public class PurchaseServiceImpl implements PurchaseService{
 
 	
 	public void updatePurcahse(PurchaseVO purchaseVO) throws Exception {
-		
+		purchaseDao.updatePurcahse(purchaseVO);
 	}
 
 	
 	public void updateTranCode(PurchaseVO purchaseVO) throws Exception {
-
-	}
+		
+		purchaseDao.updateTranCode(purchaseVO);
+	} 
 	
 }

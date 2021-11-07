@@ -1,3 +1,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/model2/mvc/framework/ActionServlet.java=UTF-8
 encoding//src/main/java/com/model2/mvc/view/purchase/AddPurchaseViewAction.java=UTF-8
+encoding//src/main/java/com/model2/mvc/view/purchase/GetPuchaseAction.java=UTF-8
+encoding//src/main/java/com/model2/mvc/view/purchase/UpdatePurchaseViewAction.java=UTF-8

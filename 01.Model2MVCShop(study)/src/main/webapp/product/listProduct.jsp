@@ -159,7 +159,16 @@
 		<td></td>
 		<td align="left"><%= vo.getRegDate() %></td>
 		<td>
-		<td align="left"><%= vo.getProTranCode() %>
+		<td align="left">
+		<% if(vo.getProTranCode().equals("0")){%>
+			 				판매중
+			<%}else if(vo.getProTranCode().equals("1")){%>
+							구매완료
+			<%}else if(vo.getProTranCode().equals("2")){%>
+							배송중
+			<%}else if(vo.getProTranCode().equals("3")){%>
+							배송완료
+			 <%}%>	
 		</td>				
 	</tr>
 	<tr>

@@ -1,8 +1,12 @@
 package com.model2.mvc.view.purchase;
 
+import java.util.HashMap;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.model2.mvc.common.SearchVO;
 import com.model2.mvc.framework.Action;
 import com.model2.mvc.service.product.ProductService;
 import com.model2.mvc.service.product.impl.ProductServiceImpl;
@@ -17,35 +21,35 @@ public class ListPurchaseAction extends Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		PurchaseVO purchase = new PurchaseVO();
+		SearchVO searchVO=new SearchVO();
 		
-		purchase.setPaymentOption(request.getParameter("paymentOption")); // get, post는 request.getparameter을 많이 쓴다. 
-		purchase.setReceiverName(request.getParameter("receiverName"));
-		purchase.setReceiverPhone(request.getParameter("receiverPhone"));
-		purchase.setDivyAddr(request.getParameter("receiverAddr"));
-		purchase.setDivyRequest(request.getParameter("receiverRequest"));
-		purchase.setDivyDate(request.getParameter("receiverDate"));
+		int page=1;
 		
+		if(request.getParameter("page") != null) { //받은 page값이 null이 아니면 
+			page = Integer.parseInt(request.getParameter("page")); // int로 변환해서 저장 			
+		}
 		
-		UserVO user = new UserVO();
+		HttpSession session=request.getSession();
 		
-		user.setUserId(request.getParameter("buyerId"));
+		UserVO user = (UserVO)session.getAttribute("user");
 		
-		purchase.setBuyer(user);
+		searchVO.setPage(page); 
+		searchVO.setSearchCondition(request.getParameter("searchCondition"));
+		searchVO.setSearchKeyword(request.getParameter("searchKeyword"));
+		
+		String pageUnit=getServletContext().getInitParameter("pageSize");
+		searchVO.setPageUnit(Integer.parseInt(pageUnit));
+		
+		PurchaseService service = new PurchaseServiceImpl();
+		
+		HashMap<String,Object> map = service.getPurchaseList(searchVO,user.getUserId());
+
+		System.out.println("map :"+ map);
+		 
 	
-		ProductService service = new ProductServiceImpl();
-		
-		ProductVO product = new ProductVO();
-		
-		product = service.getProduct(Integer.parseInt(request.getParameter("prodno")));
-		
-		purchase.setPurchaseProd(product);
-		
-		request.setAttribute("Purchase",purchase);
-		
-		PurchaseService purchaseService = new PurchaseServiceImpl();  
-		
-		purchaseService.addPurchase(purchase);
+		request.setAttribute("map", map);
+		request.setAttribute("searchVO", searchVO);
+			
 		
 		return "forward:/purchase/listPurchase.jsp";
 	}

@@ -12,42 +12,36 @@ import com.model2.mvc.service.purchase.impl.PurchaseServiceImpl;
 import com.model2.mvc.service.purchase.vo.PurchaseVO;
 import com.model2.mvc.service.user.vo.UserVO;
 
-public class AddPurchaseAction extends Action{
+public class UpdatePurchaseAction extends Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		PurchaseVO purchase = new PurchaseVO();
+		UserVO userVO = new UserVO();
+		ProductVO productVO = new ProductVO();
 		
-		purchase.setPaymentOption(request.getParameter("paymentOption")); // get, post는 request.getparameter을 많이 쓴다. 
+		userVO.setUserId(request.getParameter("buyerId"));
+		purchase.setTranNo(Integer.parseInt(request.getParameter("tranNo")));
+		purchase.setBuyer(userVO);
+		purchase.setPaymentOption(request.getParameter("paymentOption"));
 		purchase.setReceiverName(request.getParameter("receiverName"));
 		purchase.setReceiverPhone(request.getParameter("receiverPhone"));
 		purchase.setDivyAddr(request.getParameter("receiverAddr"));
 		purchase.setDivyRequest(request.getParameter("receiverRequest"));
-		purchase.setDivyDate(request.getParameter("receiverDate"));
-		purchase.setTranCode("1");
+		purchase.setDivyDate(request.getParameter("divyDate"));
 		
-		UserVO user = new UserVO();
-		
-		user.setUserId(request.getParameter("buyerId"));
-		
-		purchase.setBuyer(user);
-	
-		ProductService service = new ProductServiceImpl();
-		
-		ProductVO product = new ProductVO();
-		
-		product = service.getProduct(Integer.parseInt(request.getParameter("prodno")));
-		
-		purchase.setPurchaseProd(product);
-
 		request.setAttribute("Purchase",purchase);
 		
 		PurchaseService purchaseService = new PurchaseServiceImpl();  
 		
-		purchaseService.addPurchase(purchase);
+		purchaseService.updatePurcahse(purchase);
 		
-		return "forward:/purchase/addPurchase.jsp";
+		purchase = purchaseService.getPurchase(purchase.getTranNo());
+		
+		request.setAttribute("PurchaseVO",purchase);
+				
+		return "forward:/purchase/updatePurchase.jsp";
 	}
 
 }

@@ -13,6 +13,7 @@ public class ProductVO {
 	private int prodNo;
 	private Date regDate;
 	private String proTranCode;
+	private String transNo;
 	
 	public ProductVO(){
 	}
@@ -71,5 +72,13 @@ public class ProductVO {
 		return "ProductVO : [fileName]" + fileName
 				+ "[manuDate]" + manuDate+ "[price]" + price + "[prodDetail]" + prodDetail
 				+ "[prodName]" + prodName + "[prodNo]" + prodNo;
+	}
+
+	public String getTransNo() {
+		return transNo;
+	}
+
+	public void setTransNo(String transNo) {
+		this.transNo = transNo;
 	}	
 }

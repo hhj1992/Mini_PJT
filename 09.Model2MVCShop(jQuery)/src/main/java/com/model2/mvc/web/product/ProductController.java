@@ -1,6 +1,5 @@
 package com.model2.mvc.web.product;
 
-import java.io.File;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
@@ -35,7 +33,6 @@ public class ProductController {
 	@Autowired
 	@Qualifier("ProductServiceImpl")
 	private ProductService productService;
-	private static final String FILE_SERVER_PATH = "F:\\Git\\Mini_PJT\\07.Model2MVCShop(URI,pattern)\\src\\main\\webapp\\images\\uploadFiles";
 	//setter Method 구현 않음
 		
 	public ProductController(){
@@ -59,16 +56,7 @@ public class ProductController {
 //	}
 
 	@RequestMapping(value="addProduct", method=RequestMethod.POST)
-	public String addProduct( @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file) throws Exception {
-		System.out.println("addProduct Post start...");
-		System.out.println("file:"+file);
-		
-		if(!file.getOriginalFilename().isEmpty()) {
-			file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
-			product.setFileName(file.getOriginalFilename());
-		
-		}
-		
+	public String addProduct( @ModelAttribute("product") Product product) throws Exception {
 
 		System.out.println("addProduct");
 		//Business Logic

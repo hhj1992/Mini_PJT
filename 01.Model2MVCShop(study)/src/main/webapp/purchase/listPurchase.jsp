@@ -133,7 +133,7 @@ System.out.println(list);
             <td></td>
             <td align="left"> 
             <%if(vo.getTranCode().equals("2")){%>           
-            	<a href ="updateTranCode.do?tran_no=<%=vo.getTranNo()%>" onclick='return confirm("물픔을 수령 하셨습니까 ?");'>물건도착</a>
+            	<a href ="updateTranCodeByProd.do?tran_no=<%=vo.getTranNo()%>" onclick='return confirm("물픔을 수령 하셨습니까 ?");'>물건도착</a>
             <%}%>
             </td> 
         </tr>

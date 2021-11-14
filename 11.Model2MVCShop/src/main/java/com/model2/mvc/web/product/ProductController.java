@@ -35,7 +35,7 @@ public class ProductController {
 	@Autowired
 	@Qualifier("ProductServiceImpl")
 	private ProductService productService;
-	private static final String FILE_SERVER_PATH = "F:\\Git\\Mini_PJT\\07.Model2MVCShop(URI,pattern)\\src\\main\\webapp\\images\\uploadFiles";
+	private static final String FILE_SERVER_PATH = "F:\\Git\\Mini_PJT\\11.Model2MVCShop\\src\\main\\webapp\\images\\uploadFiles";
 	//setter Method 구현 않음
 		
 	public ProductController(){

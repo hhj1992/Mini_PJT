@@ -65,6 +65,11 @@
     <bean id="viewResolver"
 				class="org.springframework.web.servlet.view.InternalResourceViewResolver" />
 	
+<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+       <property name="maxUploadSize" value="10485760"/>
+       <property name="defaultEncoding" value="UTF-8" />
+     </bean>
+ 
 	
 	<!-- ////////////////////////////////////////// 추가 ,  변경된 부분 ////////////////////////////////////////////////// -->
 	<!--	
@@ -84,7 +89,7 @@
 
 	<!-- 	:: exception resolver  선언 :: 서술적 / 선언적 예외처리 
 			:: Servlet 에서의 선언적 예외처리를 다시 생각하며....  -->
-	<bean id="exceptionResolver"
+<!-- 	<bean id="exceptionResolver"
 				class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
 		
 		<property name="exceptionMappings">
@@ -96,6 +101,6 @@
 		
 		<property name="defaultErrorView"	value="/common/error.jsp" />
 		
-	</bean>
+	</bean> -->
 	
 </beans>

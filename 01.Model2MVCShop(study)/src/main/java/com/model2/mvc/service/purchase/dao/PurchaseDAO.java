@@ -118,7 +118,7 @@ public class PurchaseDAO {
 			purchaseVO.setPurchaseProd(productVO);		
 			userVO.setUserId(rs.getString("BUYER_ID"));
 			purchaseVO.setBuyer(userVO);			
-			purchaseVO.setPaymentOption(rs.getString("PAYMENT_OPTION"));
+			purchaseVO.setPaymentOption(rs.getString("PAYMENT_OPTION").trim());
 			purchaseVO.setReceiverName(rs.getString("RECEIVER_NAME"));			
 			purchaseVO.setReceiverPhone(rs.getString("RECEIVER_PHONE"));			
 			purchaseVO.setDivyAddr(rs.getString("DEMAILADDR"));			
@@ -150,37 +150,37 @@ public class PurchaseDAO {
 
 	}
 	
-	/*
-	 * public void updatePurcahse(PurchaseVO purchaseVO) throws Exception {
-	 * 
-	 * Connection con = DBUtil.getConnection();
-	 * 
-	 * String sql = "update transaction set tran_status_code = ? where tran_no = ?";
-	 * 
-	 * PreparedStatement stmt = con.prepareStatement(sql);
-	 * 
-	 * 
-	 * userVO.setUserId(request.getParameter("buyerId"));
-	 * purchase.setTranNo(Integer.parseInt(request.getParameter("tranNo")));// 쿼리조건.
-	 * purchase.setPaymentOption(request.getParameter("paymentOption"));
-	 * purchase.setReceiverName(request.getParameter("receiverName"));
-	 * purchase.setReceiverPhone(request.getParameter("receiverPhone"));
-	 * purchase.setDivyAddr(request.getParameter("receiverAddr"));
-	 * purchase.setDivyRequest(request.getParameter("receiverRequest"));
-	 * purchase.setDivyDate(request.getParameter("divyDate"));
-	 * 
-	 * 
-	 * 
-	 * stmt.setString(1, purchaseVO.getTranCode()); stmt.setInt(2,
-	 * purchaseVO.getTranNo());
-	 * 
-	 * 
-	 * stmt.executeUpdate();
-	 * 
-	 * con.close();
-	 * 
-	 * }
-	 */
+	
+	  public void updatePurcahse(PurchaseVO purchaseVO) throws Exception {
+	  
+	  Connection con = DBUtil.getConnection();
+	  
+	  String sql = "update transaction set PAYMENT_OPTION =?, RECEIVER_NAME=?, RECEIVER_PHONE = ?,  DEMAILADDR = ?, DLVY_REQUEST = ?, DLVY_DATE = ? where tran_no = ?";
+	  
+	  PreparedStatement stmt = con.prepareStatement(sql);
+	  
+		
+		stmt.setString(1, purchaseVO.getPaymentOption()); //구매방법
+		stmt.setString(2, purchaseVO.getReceiverName()); //구매자이름
+		stmt.setString(3, purchaseVO.getReceiverPhone()); //구매자연락처
+		stmt.setString(4, purchaseVO.getDivyAddr()); //구매자주소
+		stmt.setString(5, purchaseVO.getDivyRequest()); //구매요청사항
+		stmt.setString(6, purchaseVO.getDivyDate()); //배송희망일자
+		stmt.setInt(7, purchaseVO.getTranNo()); //tranNO
+		
+//		System.out.println("dao");
+
+		/*
+		 * //PAYMENT_OPTION = '2' RECEIVER_NAME = '표선영' RECEIVER_PHONE = '01012345678'
+		 * DEMAILADDR = '강남구' DLVY_REQUEST = '빨리요' DLVY_DATE = '2013-01-07' tran_no =
+		 * 10000;
+		 */
+	
+		stmt.executeUpdate();
+		con.close();
+	  System.out.println("end");
+	  }
+	 
 	
 
 }

@@ -19,10 +19,9 @@ public class UpdatePurchaseAction extends Action{
 		
 		PurchaseVO purchase = new PurchaseVO();
 		UserVO userVO = new UserVO();
-		ProductVO productVO = new ProductVO();
+		//ProductVO productVO = new ProductVO();
 		
 		userVO.setUserId(request.getParameter("buyerId"));
-		purchase.setTranNo(Integer.parseInt(request.getParameter("tranNo")));
 		purchase.setBuyer(userVO);
 		purchase.setPaymentOption(request.getParameter("paymentOption"));
 		purchase.setReceiverName(request.getParameter("receiverName"));
@@ -30,14 +29,18 @@ public class UpdatePurchaseAction extends Action{
 		purchase.setDivyAddr(request.getParameter("receiverAddr"));
 		purchase.setDivyRequest(request.getParameter("receiverRequest"));
 		purchase.setDivyDate(request.getParameter("divyDate"));
+		purchase.setTranNo(Integer.parseInt(request.getParameter("tranNo")));
 		
-		request.setAttribute("Purchase",purchase);
 		
 		PurchaseService purchaseService = new PurchaseServiceImpl();  
 		
 		purchaseService.updatePurcahse(purchase);
 		
+		System.out.println("¾Æ¹«¸»");
+		
 		purchase = purchaseService.getPurchase(purchase.getTranNo());
+		
+		System.out.println(purchase);
 		
 		request.setAttribute("PurchaseVO",purchase);
 				

@@ -8,6 +8,8 @@ PurchaseVO purchaseVo = (PurchaseVO)request.getAttribute("PurchaseVO");
 UserVO userVo = purchaseVo.getBuyer();
 ProductVO productVo = purchaseVo.getPurchaseProd();
 
+System.out.println("¾Æ¹«¸»2");
+System.out.println("purchaseVo");
 %>
 
 <html>

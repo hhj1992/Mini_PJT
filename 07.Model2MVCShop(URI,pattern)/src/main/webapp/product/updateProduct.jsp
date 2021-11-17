@@ -1,5 +1,5 @@
-<%-- <%@page import="com.model2.mvc.service.domain.Product"%> --%>
 <%@ page contentType="text/html; charset=euc-kr"%>
+<%@ page pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%-- <%

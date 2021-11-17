@@ -59,17 +59,20 @@ public class ProductController {
 //	}
 
 	@RequestMapping(value="addProduct", method=RequestMethod.POST)
-	public String addProduct( @ModelAttribute("product") Product product, @RequestParam("file") MultipartFile file) throws Exception {
+	public String addProduct( @ModelAttribute("product") Product product, @RequestParam("ch") MultipartFile file) throws Exception {
 		System.out.println("addProduct Post start...");
 		System.out.println("file:"+file);
 		
 		if(!file.getOriginalFilename().isEmpty()) {
 			file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
-			product.setFileName(file.getOriginalFilename());
+			product.setFileName(FILE_SERVER_PATH+"/"+file.getOriginalFilename());
 		
 		}
 		
-
+		product.setManuDate(product.getManuDate().replace("-",""));
+		
+		System.out.println("product:"+product.getManuDate());
+		
 		System.out.println("addProduct");
 		//Business Logic
 		productService.addProduct(product);
@@ -90,8 +93,14 @@ public class ProductController {
 	}
 	
 	@RequestMapping(value="updateProduct",method=RequestMethod.POST)
-	public String updateProduct( @ModelAttribute("product") Product product , Model model) throws Exception{
-
+	public String updateProduct( @ModelAttribute("product") Product product , Model model, @RequestParam("ch") MultipartFile file) throws Exception{
+		 
+		if(file != null) {
+			if(!file.getOriginalFilename().isEmpty()) {
+				file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
+				product.setFileName(FILE_SERVER_PATH+"/"+file.getOriginalFilename());
+			}			
+		}
 		System.out.println("updateProduct");
 		//Business Logic
 		productService.updateProduct(product);
@@ -181,7 +190,7 @@ public class ProductController {
 		
 		String returnurl = "forward:/product/listProduct.jsp";
 		
-		if (request.getParameter("menu").equals("manage")){			
+		if (request.getParameter("menu").equals("manage")){	//menu가 manage면 주소 바꿔서 return, 아니면 listproudct.jsp로 return 		
 			model.addAttribute("menu","manage");
 			returnurl = "forward:/product/updateProductView.jsp"; // forward로 넘길때는 requestAttribute or addAttribute로 setting해야함. 
 		}

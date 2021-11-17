@@ -7,14 +7,23 @@
 <html lang="ko">
 	
 <head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 	<meta charset="EUC-KR">
 	
 	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
+	<!-- view크기 조절 / 브라우저 너비를 장치 너비에 맞추어 표시함.   --> 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	
 	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
+	<!-- CDN 은 Contents Delivery Network -->
+	<!-- 스타일 시트(stylesheet)로 사용할 외부 리소스를 불러옴. --> 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	
+	
 	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
@@ -27,10 +36,19 @@
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
- 		body {
-            padding-top : 50px;
+	       body > div.container{
+            margin-top: 10px;
+            color: #000;
         }
-     </style>
+        
+        body {
+			padding-top: 50px;
+			background: #eee;
+			color: #000;
+			font-family: 'Gowun Batang', serif;	
+    		padding-top : 50px;
+		}
+    </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
 	<script type="text/javascript">
@@ -57,8 +75,8 @@
 	<div class="container">
 	
 		<div class="page-header">
-	       <h3 class=" text-info">회원정보조회</h3>
-	       <h5 class="text-muted">내 정보를 <strong class="text-danger">최신정보로 관리</strong>해 주세요.</h5>
+	       <h3 class=" text-secondary">회원정보조회</h3>
+	       <h5 class="text-muted">내 정보를 <strong class="text-primary">최신정보로 관리</strong>해 주세요.</h5>
 	    </div>
 	
 		<div class="row">
@@ -105,7 +123,7 @@
 		
 		<div class="row">
 	  		<div class="col-md-12 text-center ">
-	  			<button type="button" class="btn btn-primary">회원정보수정</button>
+	  			<button type="button" class="btn btn-default">회원정보수정</button>
 	  		</div>
 		</div>
 		

@@ -60,8 +60,8 @@
 <div class="container">
 		<nav>
 		  <ul class="pager">
-		    <li><a href="#">Previous</a></li>
-		    <li><a href="#">Next</a></li>
+		    <li><a href="javascript:pager('${resultPage.currentPage-1}')">Previous</a></li>
+		    <li><a href="javascript:pager('${resultPage.currentPage+1}')">Next</a></li>
 		  </ul>
 		</nav>
 </div>

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -63,6 +64,15 @@ public class ProductRestController {
 //		string01 = productService.addProduct(product);
 //		System.out.println(string01);
 		return productService.addProduct(product); //"redirect:/product/listProduct?menu=manage";
+	}
+	
+	@RequestMapping(value = "json/getProduct/{prodNo}", method = RequestMethod.GET)
+	public Product getProduct(@PathVariable int prodNo) throws Exception {
+
+		System.out.println("/product/json/getProduct : GET");
+
+		// Business Logic
+		return productService.getProduct(prodNo);
 	}
 	
 	/*

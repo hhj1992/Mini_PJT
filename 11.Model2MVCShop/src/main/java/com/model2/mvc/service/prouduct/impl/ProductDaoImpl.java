@@ -37,8 +37,8 @@ public class ProductDaoImpl implements ProductDAO{
 	}
 
 	///Method
-	public void addProduct(Product product) throws Exception{
-		sqlSession.insert("ProductMapper.addProduct", product);
+	public int addProduct(Product product) throws Exception{
+		return sqlSession.insert("ProductMapper.addProduct", product);
 	}
 
 	public Product getProduct(int prodNo) throws Exception {

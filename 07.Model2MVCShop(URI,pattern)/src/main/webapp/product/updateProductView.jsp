@@ -1,22 +1,48 @@
-<%-- <%@page import="com.model2.mvc.service.domain.Product"%>
-<%@page import="com.model2.mvc.common.util.CommonUtil"%>
-<%@page import="com.model2.mvc.common.Search"%>
-<%@page import="com.model2.mvc.common.Page"%>
-<%@page import="java.util.HashMap"%>
-<%@page import="java.util.List"%>
-<%@page import="java.util.ArrayList"%> --%>
 <%@ page contentType="text/html; charset=euc-kr"%>
+<%@ page pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 
-
-
 <head>
+	<meta charset="EUC-KR">
+	
+	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<!--  ///////////////////////// Bootstrap, jQuery CDN ////////////////////////// -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" >
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+	
+	
+	<!-- Bootstrap Dropdown Hover CSS -->
+   <link href="/css/animate.min.css" rel="stylesheet">
+   <link href="/css/bootstrap-dropdownhover.min.css" rel="stylesheet">
+    <!-- Bootstrap Dropdown Hover JS -->
+   <script src="/javascript/bootstrap-dropdownhover.min.js"></script>
+   
+   
+   <!-- jQuery UI toolTip 사용 CSS-->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <!-- jQuery UI toolTip 사용 JS-->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	
+	<!--  ///////////////////////// CSS ////////////////////////// -->
+	<style>
+	  body {
+            padding-top : 50px;
+        }
+    </style>
+    
+     <!--  ///////////////////////// JavaScript ////////////////////////// -->
+	<script type="text/javascript">
+<link rel="stylesheet" href="/css/admin.css" type="text/css">
+	
+
 <title>상품 목록조회</title>
 
-<link rel="stylesheet" href="/css/admin.css" type="text/css">
 
-<script type="text/javascript">
 	function fncGetProductList(currentPage) {
 		document.getElementById("currentPage").value = currentPage;
 		//currentPage라는 ID값을 가진 value값에 매개변수로 받아온 currentPage값을 세팅
@@ -27,32 +53,25 @@
 </script>
 </head>
 
-<body bgcolor="#ffffff" text="#000000">
+<body >
+	
+	<!--  화면구성 div Start /////////////////////////////////////-->
+	
+		<div class="page-header text-info">
+	       <h3>상품관리</h3>
+	    </div>
+	    
+	    <!-- table 위쪽 검색 Start /////////////////////////////////////-->
+	    <div class="row">
 
-	<div style="width: 98%; margin-left: 10px;">
+		<div class="col-md-6 text-left">
+			<p class="text-primary">
+		    		전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
+		    	</p>
+		    </div>
 
-		<form name="detailForm" action="/product/listProduct?menu=${menu}"
-			method="post">
+		<form name="detailForm" action="/product/listProduct?menu=${menu}" method="post">
 			<input type="hidden" name="menu" value="${menu}" />
-
-			<table width="100%" height="37" border="0" cellpadding="0"
-				cellspacing="0">
-				<tr>
-					<td width="15" height="37"><img src="/images/ct_ttl_img01.gif"
-						width="15" height="37" /></td>
-					<td background="/images/ct_ttl_img02.gif" width="100%"
-						style="padding-left: 10px;">
-						<table width="100%" border="0" cellspacing="0" cellpadding="0">
-							<tr>
-								<td width="93%" class="ct_ttl01">상품 관리</td>
-							</tr>
-						</table>
-					</td>
-					<td width="12" height="37"><img src="/images/ct_ttl_img03.gif"
-						width="12" height="37" /></td>
-				</tr>
-			</table>
-
 
 			<table width="100%" border="0" cellspacing="0" cellpadding="0"
 				style="margin-top: 10px;">

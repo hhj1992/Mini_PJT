@@ -31,8 +31,8 @@ public class ProductServiceImpl implements ProductService {
 	///method
 	
 	//상품 추가
-	public void addProduct(Product product) throws Exception{
-	productDao.addProduct(product);
+	public int addProduct(Product product) throws Exception{
+	return productDao.addProduct(product);
 	}	
 	//상품 정보가지고 오기
 	public Product getProduct(int prodNo) throws Exception{

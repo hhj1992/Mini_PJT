@@ -7,6 +7,9 @@
 <html lang="ko">
 	
 <head>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 	<meta charset="EUC-KR">
 	
 	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
@@ -21,9 +24,17 @@
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
        body > div.container{
-        	border: 3px solid #D6CDB7;
             margin-top: 10px;
+            color: #000;
+			font-family: 'Gowun Batang', serif;	
         }
+        
+        body {
+		padding-top: 50px;
+		background: #eee;
+		color: #000;
+		font-family: 'Gowun Batang', serif;	
+		}
     </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -32,7 +43,7 @@
 		//============= "가입"  Event 연결 =============
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$( "button.btn.btn-primary" ).on("click" , function() {
+			$( "button:button[name='2']" ).on("click" , function() {
 				fncAddUser();
 			});
 		});	
@@ -41,7 +52,7 @@
 		//============= "취소"  Event 처리 및  연결 =============
 		$(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			$("a[href='#' ]").on("click" , function() {
+			$( "button:button[name='3']" ).on("click" , function() {
 				$("form")[0].reset();
 			});
 		});	
@@ -143,7 +154,7 @@
 		//==>"ID중복확인" Event 처리 및 연결
 		 $(function() {
 			//==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			 $("button.btn.btn-info").on("click" , function() {
+			 $("button:button[name='1']").on("click" , function() {
 				popWin 
 				= window.open("/user/checkDuplication.jsp",
 											"popWin", 
@@ -169,7 +180,7 @@
 	<!--  화면구성 div Start /////////////////////////////////////-->
 	<div class="container">
 	
-		<h1 class="bg-primary text-center">회 원 가 입</h1>
+		<h1 class="text-center">회 원 가 입</h1>
 		
 		<!-- form Start /////////////////////////////////////-->
 		<form class="form-horizontal">
@@ -177,13 +188,13 @@
 		  <div class="form-group">
 		    <label for="userId" class="col-sm-offset-1 col-sm-3 control-label">아 이 디</label>
 		    <div class="col-sm-4">
-		      <input type="text" class="form-control" id="userId" name="userId" placeholder="중복확인하세요"  readonly>
+		      <input type="text" class="" id="userId" name="userId" placeholder="중복확인하세요">
 		       <span id="helpBlock" class="help-block">
 		      	<strong class="text-danger">입력전 중복확인 부터..</strong>
 		      </span>
 		    </div>
 		    <div class="col-sm-3">
-		      <button type="button" class="btn btn-info">중복확인</button>
+		      <button type="button" class="btn btn-default" name="1">중복확인</button>
 		    </div>
 		  </div>
 		  
@@ -254,8 +265,8 @@
 		  
 		  <div class="form-group">
 		    <div class="col-sm-offset-4  col-sm-4 text-center">
-		      <button type="button" class="btn btn-primary"  >가 &nbsp;입</button>
-			  <a class="btn btn-primary btn" href="#" role="button">취&nbsp;소</a>
+		      <button type="button" class="btn btn-default" name="2" >가 &nbsp;입</button>
+			  <button type="button" class="btn btn-default" name="3">취&nbsp;소</button>s
 		    </div>
 		  </div>
 		</form>

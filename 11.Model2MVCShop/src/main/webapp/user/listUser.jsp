@@ -10,6 +10,11 @@
 <html lang="ko">
 	
 <head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+
 	<meta charset="EUC-KR">
 	
 	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
@@ -36,9 +41,19 @@
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
 	<style>
-	  body {
-            padding-top : 50px;
+
+       body > div.container{
+        	margin-top: 10px;
+            color: #000;
         }
+        
+        body {
+			padding-top: 50px;
+			background: #eee;
+			color: #000;
+			font-family: 'Gowun Batang', serif;	
+    		padding-top : 50px;
+}
     </style>
     
      <!--  ///////////////////////// JavaScript ////////////////////////// -->
@@ -54,9 +69,9 @@
 		//============= "검색"  Event  처리 =============	
 		 $(function() {
 			 //==> DOM Object GET 3가지 방법 ==> 1. $(tagName) : 2.(#id) : 3.$(.className)
-			 //$( "button.btn.btn-default" ).on("click" , function() {
-			//	fncGetUserList(1);
-			//});
+			 $( "button.btn.btn-default" ).on("click" , function() {
+				fncGetUserList(1);
+			});
 		 });
 		
 		
@@ -129,7 +144,7 @@
 	<!--  화면구성 div Start /////////////////////////////////////-->
 	<div class="container">
 	
-		<div class="page-header text-info">
+		<div class="page-header text-secondary">
 	       <h3>회원목록조회</h3>
 	    </div>
 	    
@@ -137,7 +152,7 @@
 	    <div class="row">
 	    
 		    <div class="col-md-6 text-left">
-		    	<p class="text-primary">
+		    	<p class="text-secondary">
 		    		전체  ${resultPage.totalCount } 건수, 현재 ${resultPage.currentPage}  페이지
 		    	</p>
 		    </div>

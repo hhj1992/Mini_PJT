@@ -9,7 +9,7 @@ import com.model2.mvc.service.domain.Product;
 public interface ProductService { 
 	
 	//상품 추가
-	public void addProduct(Product product) throws Exception;
+	public int addProduct(Product product) throws Exception;
 
 	//상품 정보가지고 오기
 	public Product getProduct(int prodNo) throws Exception;

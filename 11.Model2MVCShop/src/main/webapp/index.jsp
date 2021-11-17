@@ -17,6 +17,10 @@
 <html lang="ko">
 	
 <head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
 	<meta charset="EUC-KR">
 	
 	<!-- 참조 : http://getbootstrap.com/css/   -->
@@ -29,7 +33,21 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
-	<style></style>
+	<style>
+
+       body > div.container{
+        	margin-top: 10px;
+            color: #000;
+        }
+        
+        body {
+			padding-top: 50px;
+			background: #eee;
+			color: #000;
+			font-family: 'Gowun Batang', serif;	
+    		padding-top : 50px;
+}
+    </style>
    	
    	<!--  ///////////////////////// JavaScript ////////////////////////// -->
 	<script type="text/javascript">
@@ -75,7 +93,7 @@
 			<!-- toolBar Button End //////////////////////// -->
 			
 			<div class="collapse navbar-collapse"  id="target">
-	             <ul class="nav navbar-nav navbar-right">
+	             <ul class="nav navbar-nav navbar-right ">
 	                 <li><a href="#">회원가입</a></li>
 	                 <li><a href="#">로 그 인</a></li>
 	           	</ul>
@@ -95,7 +113,7 @@
 			<div class="col-md-3">
 		        
 		       	<!--  회원관리 목록에 제목 -->
-				<div class="panel panel-primary">
+				<div class="panel paner-default">
 					<div class="panel-heading">
 						<i class="glyphicon glyphicon-heart"></i> 회원관리
          			</div>
@@ -111,12 +129,12 @@
 		        </div>
                
                
-				<div class="panel panel-primary">
+				<div class="panel paner-default">
 					<div class="panel-heading">
 							<i class="glyphicon glyphicon-briefcase"></i> 판매상품관리
          			</div>
 					<ul class="list-group">
-						 <li class="list-group-item">
+						 <li class="list-group-item ">
 						 	<a href="#">판매상품등록</a> <i class="glyphicon glyphicon-ban-circle"></i>
 						 </li>
 						 <li class="list-group-item">
@@ -126,7 +144,7 @@
 		        </div>
                
                
-				<div class="panel panel-primary">
+				<div class="panel paner-default">
 					<div class="panel-heading">
 							<i class="glyphicon glyphicon-shopping-cart"></i> 상품구매
 	    			</div>
@@ -147,14 +165,13 @@
 	 	 	<!--  Main start /////////////////////////////////////-->   		
 	 	 	<div class="col-md-9">
 				<div class="jumbotron">
-			  		<h1>Model2 MVC Shop</h1>
-			  		<p>로그인 후 사용가능...</p>
-			  		<p>로그인 전 검색만 가능합니다.</p>
-			  		<p>회원가입 하세요.</p>
+			  		<h1>Bit-camp Shop</h1>
+			  				
+			  		<p>Please Login & MemberShip</p>
 			  		
 			  		<div class="text-center">
-			  			<a class="btn btn-info btn-lg" href="#" role="button">회원가입</a>
-			  			<a class="btn btn-info btn-lg" href="#" role="button">로 그 인</a>
+			  			<a class="btn btn-default btn-lg" href="#" role="button">회원가입</a>
+			  			<a class="btn btn-default btn-lg" href="#" role="button">로 그 인</a>
 			  		</div>
 			  	
 			  	</div>

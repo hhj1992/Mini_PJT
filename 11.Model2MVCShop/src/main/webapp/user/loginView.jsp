@@ -7,6 +7,12 @@
 <html lang="ko">
 	
 <head>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&display=swap" rel="stylesheet">
+<meta charset="EUC-KR">
+	
 	<meta charset="EUC-KR">
 	
 	<!-- 참조 : http://getbootstrap.com/css/   참조 -->
@@ -19,12 +25,20 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	
 	<!--  ///////////////////////// CSS ////////////////////////// -->
-	<style>
-    	 body >  div.container{ 
-        	border: 3px solid #D6CDB7;
-            margin-top: 10px;
+		<style>
+	     body > div.container{
+        	margin-top: 10px;
+            color: #000;
         }
-    </style>
+        
+        body {
+			padding-top: 50px;
+			background: #eee;
+			color: #000;
+			font-family: 'Gowun Batang', serif;	
+    		padding-top : 50px;
+		}
+   		 </style>
     
     <!--  ///////////////////////// JavaScript ////////////////////////// -->
 	<script type="text/javascript">
@@ -84,7 +98,7 @@
 		<div class="row">
 		
 			<div class="col-md-6">
-					<img src="/images/logo-spring.png" class="img-rounded" width="100%" />
+					<!-- <img src="/images/logo-spring.png" class="img-rounded" width="100%" /> -->
 			</div>
 	   	 	
 	 	 	<div class="col-md-6">
@@ -112,8 +126,8 @@
 					  
 					  <div class="form-group">
 					    <div class="col-sm-offset-4 col-sm-6 text-center">
-					      <button type="button" class="btn btn-primary"  >로 &nbsp;그 &nbsp;인</button>
-					      <a class="btn btn-primary btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
+					      <button type="button" class="btn btn-default"  >로 &nbsp;그 &nbsp;인</button>
+					      <a class="btn btn-default btn" href="#" role="button">회 &nbsp;원 &nbsp;가 &nbsp;입</a>
 					    </div>
 					  </div>
 			

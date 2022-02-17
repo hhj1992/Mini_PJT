@@ -70,10 +70,11 @@
 		});
 	 });
 	
-	function fncGetUserList(currentPage) {			
+	function fncGetUserList(currentPage) {	
 		$("#currentPage").val(currentPage)
 		$("form").attr("method" , "POST").attr("action" , "/product/listProduct").submit();	
 	}
+	
 	
 	function pager(currentPage){
 		var maxPage = "${resultPage.maxPage}";
@@ -125,12 +126,12 @@
 									var displayValue = "<h6>"
 																+"상품명 : "+JSONData.prodName+"<br/>"
 																+"가격 : "+JSONData.price+"<br/>"
-																+"등록일 : "+JSONData.+"<br/>"
+																+"등록일 : "+JSONData.regDate+"<br/>"
 																+"</h6>";
 									$("h6").remove();
 									$( "#"+prodNo+"" ).html(displayValue);
 								}
-						});
+						}); 
 						////////////////////////////////////////////////////////////////////////////////////////////
 					
 			});

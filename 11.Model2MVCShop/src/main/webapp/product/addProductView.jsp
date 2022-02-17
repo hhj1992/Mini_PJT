@@ -128,8 +128,7 @@ body {		padding-top: 50px;
 
 
 	<div class="container">
-		<form class="form-horizontal" name="detailForm"
-			enctype="multipart/form-data">
+		<form class="form-horizontal" name="detailForm" enctype="multipart/form-data">
 			<h1 class=" text-center">상 품 등 록</h1>
 
 			<div class="form-group">
@@ -180,7 +179,7 @@ body {		padding-top: 50px;
 					품 이 미 지 </label>
 				<div class="col-sm-4">
 					<input type="file" class="form-control" id="ch" name="ch">
-				</div>
+				</div> 
 			</div>
 
 

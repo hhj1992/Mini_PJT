@@ -61,17 +61,17 @@ public class ProductController {
 	@RequestMapping(value="addProduct", method=RequestMethod.POST)
 	public String addProduct( @ModelAttribute("product") Product product, @RequestParam("ch") MultipartFile file) throws Exception {
 		System.out.println("addProduct Post start...");
-		System.out.println("file:"+file);
+		System.out.println("file:"+file); 
 		
 		if(!file.getOriginalFilename().isEmpty()) {
 			file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
-			product.setFileName(FILE_SERVER_PATH+"/"+file.getOriginalFilename());
-		
+			product.setFileName("/images/uploadFiles/"+file.getOriginalFilename());
 		}
 		
-		product.setManuDate(product.getManuDate().replace("-",""));
-		
-		System.out.println("product:"+product.getManuDate());
+		  product.setManuDate(product.getManuDate().replace("-",""));
+		  
+		  System.out.println("product:"+product.getManuDate());
+		 
 		
 		System.out.println("addProduct");
 		//Business Logic
@@ -98,7 +98,7 @@ public class ProductController {
 		if(file != null) {
 			if(!file.getOriginalFilename().isEmpty()) {
 				file.transferTo(new File(FILE_SERVER_PATH, file.getOriginalFilename()));
-				product.setFileName(FILE_SERVER_PATH+"/"+file.getOriginalFilename());
+				product.setFileName("/images/uploadFiles/"+file.getOriginalFilename());
 			}			
 		}
 		System.out.println("updateProduct");

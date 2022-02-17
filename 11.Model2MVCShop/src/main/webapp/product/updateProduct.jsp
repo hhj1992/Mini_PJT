@@ -179,8 +179,11 @@
 				<div class="col-sm-4">
 					<input type="file" class="form-control" id="ch" name="ch">
 				</div>
+			</div>
+			
+			<div class="form-group">
 				<div class="col-sm-4">
-				<img src="${product.fileName}"/>
+					<img src="${product.fileName}"/>
 				</div>
 			</div>
 

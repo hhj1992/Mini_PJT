@@ -41,7 +41,7 @@
 	   		PROD_DETAIL = #{prodDetail},
 	   		MANUFACTURE_DAY = #{manuDate},
 	   		PRICE = #{price},
-	   		IMAGE_FILE = #{fileName}
+	   		IMAGE_FILE = #{fileName:VARCHAR}
 	   	</set>
 	   	WHERE PROD_NO = #{prodNo}
 	 </update>

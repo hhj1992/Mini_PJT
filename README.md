@@ -26,8 +26,8 @@ Encapsulation 되어있던 Spring Framework을 뜯어 분석했던 **01번 Proje
 
 ## Model 2 Web Architecture
 ### MVC (Model-View-Controller) Pattern 
->Model, View, Controller으로 분리한 디자인 패턴으로 Business Logic과 
-presentation View(UI)와 Business logic(Domain)의 분리로 서로 영향을 받지않고 각각의 유지보수가 가능.
+>Model, View, Controller으로 분리한 디자인 패턴  
+presentation view(UI)와 Business logic(Domain)의 분리로 서로 영향을 받지않고 각각의 유지보수가 가능.
 
 * **Model**
    * 어플리케이션 정보, Data를 가지며 처음 정의 상수, 초기화 값, 변수 등을 뜻하며 Pojo로 구성된다.
